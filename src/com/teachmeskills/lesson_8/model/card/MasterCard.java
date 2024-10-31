@@ -16,10 +16,7 @@ public class MasterCard extends BaseCard {
 
     @Override
     public boolean checkCardLimitTransfer(int transferAmount) {
-        if (Constants.masterCardLimit >= transferAmount){
-            return true;
-        }else
-            return false;
+        return Constants.MASTER_CARD_LIMIT >= transferAmount;
         // TODO реализовать проверку лимита. суть проверки в том, что сумма для перевода не превышает лимит
 
         // это пока стоит как ответ-заглушка

@@ -60,7 +60,7 @@ public class ApplicationRunner {
         MasterCardTransferService masterCardTransferService1 = new MasterCardTransferService();
         masterCardClient1.showBaseInfo();
         masterCardClient2.showBaseInfo();
-        Check check1 = masterCardTransferService1.transferFromCardToCard(masterCardClient1, masterCardClient2, 999);
+        Check check1 = masterCardTransferService1.transferFromCardToCard(masterCardClient1, masterCardClient2, 1499);
         check1.showCheckInformation();
         masterCardClient1.showBaseInfo();
         masterCardClient2.showBaseInfo();

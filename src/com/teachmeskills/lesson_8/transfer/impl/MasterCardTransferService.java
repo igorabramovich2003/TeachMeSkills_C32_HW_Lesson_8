@@ -12,13 +12,15 @@ import java.util.Date;
 public class MasterCardTransferService implements CardTransferService {
     @Override
     public Check transferFromCardToCard(BaseCard sendingCard, BaseCard receivingCard, int amountTransfer) {
-        if (sendingCard.checkCardLimitTransfer(amountTransfer)) {
+        //Добавил проверку чтобы сумма не была меньше нуля и комментарии
+        if (sendingCard.checkCardLimitTransfer(amountTransfer) && amountTransfer > 0) {
             sendingCard.amount -= amountTransfer;
             receivingCard.amount += amountTransfer;
-            return new Check(amountTransfer, new Date(), sendingCard);
-        }else{
-            System.out.println("limit exceeded error");
-            return new Check(Constants.masterCardLimit, new Date(), sendingCard);
+            return new Check(amountTransfer, new Date(), sendingCard, "success");
+        }else if(amountTransfer <= 0){
+            return new Check(amountTransfer, new Date(), sendingCard, "transfer amount is less than or equal to 0");
+        }else {
+            return new Check(Constants.MASTER_CARD_LIMIT, new Date(), sendingCard, "limit exceeded error");
         }
 
 
@@ -26,13 +28,15 @@ public class MasterCardTransferService implements CardTransferService {
 
     @Override
     public Check transferFromCardToAccount(BaseCard sendingCard, Account receivingAccount, int amountTransfer) {
-        if (sendingCard.checkCardLimitTransfer(amountTransfer)){
+        //Добавил проверку чтобы сумма не была меньше нуля и комментарии
+        if (sendingCard.checkCardLimitTransfer(amountTransfer) && amountTransfer > 0){
             sendingCard.amount -= amountTransfer;
             receivingAccount.amount += amountTransfer;
-            return new Check(amountTransfer, new Date(), sendingCard);
-        }else{
-            System.out.println("limit exceeded error");
-            return new Check(Constants.masterCardLimit, new Date(), sendingCard);
+            return new Check(amountTransfer, new Date(), sendingCard, "success");
+        }else if(amountTransfer <= 0){
+            return new Check(amountTransfer, new Date(), sendingCard, "transfer amount is less than or equal to 0");
+        }else {
+            return new Check(Constants.MASTER_CARD_LIMIT, new Date(), sendingCard, "limit exceeded error");
         }
 
     }

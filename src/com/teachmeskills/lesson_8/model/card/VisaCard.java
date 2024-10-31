@@ -16,10 +16,7 @@ public class VisaCard extends BaseCard{
 
     @Override
     public boolean checkCardLimitTransfer(int transferAmount) {
-        if (Constants.visaCardLimit >= transferAmount) {
-            return true;
-        }else
-            return false;
+        return Constants.VISA_CARD_LIMIT >= transferAmount;
         // TODO реализовать проверку лимита. суть проверки в том, что сумма для перевода не превышает лимит
 
         // это пока стоит как ответ-заглушка
